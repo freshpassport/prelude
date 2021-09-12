@@ -86,5 +86,7 @@
 (require 'which-key)
 (which-key-mode +1)
 
+(set-frame-font "JetBrains Mono 15" nil t)
+
 (provide 'prelude-ui)
 ;;; prelude-ui.el ends here

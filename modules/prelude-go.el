@@ -78,5 +78,13 @@
   (add-hook 'go-mode-hook (lambda ()
                             (run-hooks 'prelude-go-mode-hook))))
 
+(when (eq system-type 'darwin)
+  (require 'exec-path-from-shell)
+  (setq exec-path-from-shell-arguments '("-l"))
+  (add-hook 'after-init-hook #'exec-path-from-shell-initialize)
+  (with-eval-after-load "go-mode"
+    (with-eval-after-load "exec-path-from-shell"
+      (exec-path-from-shell-copy-envs '("GOPATH" "GO111MODULE" "GOPROXY")))))
+
 (provide 'prelude-go)
 ;;; prelude-go.el ends here
